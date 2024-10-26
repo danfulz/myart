@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艺术家姓名 - 个人艺术作品集</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="艺术家姓名的个人作品集，展示独特的艺术创作和艺术理念。">
+    <meta name="keywords" content="艺术, 画家, 雕塑, 现代艺术, 艺术家姓名, 作品集">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">张雅轩</div>
+            <ul>
+                <li><a href="#works">作品</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="parallax-section">
+            <div class="parallax-bg"></div>
+            <div class="content">
+                <h1>跨越界限，我的艺术追梦记</h1>
+                <video width="100%" height="auto" controls>
+                    <source src="art-video/跨越界限_00后的艺术追梦记_2024_07_30_720pHD.mp4" type="video/mp4">
+                    您的浏览器不支持 HTML5 视频。
+                </video>
+            </div>
+        </section>
+
+        <section id="works" class="parallax-section">
+            <div class="parallax-bg"></div>
+            <div class="content">
+                <h2>作品</h2>
+                <div class="work-grid">
+                    <figure>
+                        <img src="art-images/20241026-104622.jpeg" alt="作品1">
+                        <figcaption>《城市印象》, 2024</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="art-images/20241026-104639.jpeg" alt="作品2">
+                        <figcaption>《色彩交响》, 2024</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="art-images/20241026-104644.jpeg" alt="作品3">
+                        <figcaption>《抽象思维》, 2024</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="parallax-section">
+            <div class="parallax-bg"></div>
+            <div class="content">
+                <h2>关于艺术家</h2>
+                <img src="images/artist-portrait.jpg" alt="艺术家肖像">
+                <p>我致力于通过艺术探索人性和自然的关系。我的作品融合了传统技法和现代元素，旨在唤起观者对生命和环境的思考。</p>
+            </div>
+        </section>
+
+        <section id="contact" class="parallax-section">
+            <div class="parallax-bg"></div>
+            <div class="content">
+                <h2>联系方式</h2>
+                <form>
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="姓名*" required>
+                        <input type="email" name="email" placeholder="电子邮箱*" required>
+                    </div>
+                    <textarea name="message" placeholder="留言*" required></textarea>
+                    <button type="submit">发送</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank">微博</a>
+            <a href="#" target="_blank">微信</a>
+            <a href="#" target="_blank">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- 在 </body> 标签之前添加以下内容 -->
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 滚动时更新活动链接
+        window.addEventListener('scroll', () => {
+            let scrollPosition = window.scrollY;
+
+            document.querySelectorAll('section').forEach(section => {
+                if (scrollPosition >= section.offsetTop - 100 && 
+                    scrollPosition < section.offsetTop + section.offsetHeight - 100) {
+                    const currentId = section.attributes.id.value;
+                    removeAllActiveClasses();
+                    addActiveClass(currentId);
+                }
+            });
+        });
+
+        // 滚动时改变标题背景
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        function removeAllActiveClasses() {
+            document.querySelectorAll("nav a").forEach(el => {
+                el.classList.remove("active");
+            });
+        }
+
+        function addActiveClass(id) {
+            const selector = `nav a[href="#${id}"]`;
+            document.querySelector(selector).classList.add("active");
+        }
+    </script>
+</body>
+</html>
